@@ -14,7 +14,7 @@ export class AuthService {
   
   constructor(private http : HttpClient, private url : GlobalApiUrlService) { }
 
-  REST_API = 'https://localhost:3000';
+  REST_API = 'http://localhost:3000';
 
   login(data:any){
     var API_URL = this.url.REST_API+'/login'

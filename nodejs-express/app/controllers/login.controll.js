@@ -1,15 +1,25 @@
 const passport = require('passport');
 const pool = require('../config/db.config');
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+
 
 const User = (req, res) => {
-     const {email, password} = req.body.data;
-     pool.query("insert into public.user (email,password) values ($1,$2)", [email, password], function(err, result){
+  const { email, password } = req.body.data;
+  bcrypt.hash(password, saltRounds, function(err, hash) {
+      if (err) {
+          console.error(err);
+          res.status(500).send('Erreur lors du hachage du mot de passe');
+          return;
+      }
+      pool.query("INSERT INTO public.user (email, password) VALUES ($1, $2)", [email, hash], function(err, result) {
           if (err) {
-               res.status(400).send(err);
-               return;
-           }
-           res.status(200).send(result.rows);
-     })
+              res.status(400).send(err);
+              return;
+          }
+          res.status(200).send(result.rows);
+      });
+  });
 }
 
 const googleAuth = passport.authenticate('google', { scope: ['profile', 'email'] });

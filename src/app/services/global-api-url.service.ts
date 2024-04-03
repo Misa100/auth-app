@@ -27,7 +27,7 @@ export class GlobalApiUrlService  {
       this.PORT_API = '91';
     }
 
-    this.REST_API = 'https://' + this.RACINE_API + ':' + this.PORT_API + '/login_api';
+    this.REST_API = 'http://' + this.RACINE_API + ':' + this.PORT_API + '/login_api';
 
   } 
 }

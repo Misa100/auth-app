@@ -1,8 +1,6 @@
 require('dotenv').config();
 
 const express = require('express');
-const fs = require('fs');
-const https = require('https');
 const cors = require('cors');
 const session = require('express-session');
 const passport = require('passport');
@@ -22,9 +20,6 @@ app.use(passport.session());
 app.use("/login_api", routes)
 //to use the routes
 
-https.createServer({
-  key: fs.readFileSync('server.key'),
-  cert: fs.readFileSync('server.cert')
-}, app).listen(port, () => {
-     console.log(`Server is running on https://localhost:${port}`)
+app.listen(port, () => {
+     console.log(`Server is running on http://localhost:${port}`)
 })
