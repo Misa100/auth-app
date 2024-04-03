@@ -20,4 +20,8 @@ export class LoginComponent {
     console.log(obj)
     this.authService.login(obj).subscribe(data => {})
   }
+
+  onGoogleLogin() {
+    this.authService.googleLogin();
+  }
 }

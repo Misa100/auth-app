@@ -21,4 +21,9 @@ export class AuthService {
     return this.http.post(API_URL, {data}, httpOptions)
   }
 
+  googleLogin() {
+    const googleAuthURL = this.url.REST_API+'/auth/google/callback';
+    return this.http.get(googleAuthURL, {})
+  }
+
 }
